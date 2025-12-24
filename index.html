@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Merry Christmas</title>
+</head>
+<body>
+    <video id="videoplayer" autoplay muted>
+        <source src="assets/karácsonyi üdvözlet.mp4" type="video/mp4">
+    </video>
+
+    <audio id="musicplayer" autoplay >
+        <source src="assets/karácsonyi üdvözlet zenéje.mp3" type="audio/mp3">
+    </audio>
+
+    <button id="playButton">Play Music</button>
+
+    <style>
+        #videoplayer {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #videoplayer video {
+            position: absolute;
+            width: auto;
+            height: auto;
+            min-width:100%;
+            min-height:100%;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+        } 
+
+        #musicplayer {
+            display: none;
+        }
+
+        #playButton {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        } 
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('videoplayer');
+            var audio = document.getElementById('musicplayer');
+            var playButton = document.getElementById('playButton');
+        
+            video.addEventListener('error', function(e) {
+                console.error('Video error:', e);
+            });
+
+            audio.addEventListener('error', function(e) {
+                console.error('Audio error:', e);
+            });
+
+            video.play().then(function() {
+                console.log('Video is playing');
+            }).catch(function(e) {
+                console.error('Video play error:', e);
+            });
+
+            playButton.addEventListener('click', function() {
+                audio.play().then(function() {
+                    console.log('Audio is playing');
+                    playButton.style.display = 'none';
+                }).catch(function(e) {
+                    console.error('Audio play error:', e);
+                });
+            });
+        });    
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
